@@ -1,0 +1,96 @@
+.timeline-container {
+  padding: 10px 0;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 120px; /* Hauteur fixe plus compacte */
+}
+
+.timeline {
+  position: relative;
+  height: 100%;
+  margin: 0 40px; /* Marges sur les côtés */
+}
+
+.timeline-continuous-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #000;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-step {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+.timeline-text {
+  margin-bottom: 8px;
+  text-align: center;
+  max-width: 100px; /* Limiter la largeur du texte */
+}
+
+.timeline-title {
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.timeline-date {
+  font-size: 10px;
+  color: #666;
+}
+
+.timeline-marker {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #F99746;
+  border: 2px solid #F99746;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.timeline-marker:hover {
+  transform: scale(1.2);
+}
+
+.timeline-marker.active {
+  background-color: #F99746;
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(249, 151, 70, 0.5);
+}
+
+.timeline-location {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #333;
+  text-align: center;
+  max-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Styles pour les écrans très petits */
+@media (max-width: 480px) {
+  .timeline {
+    margin: 0 20px;
+  }
+  
+  .timeline-step {
+    width: 60px;
+  }
+}
