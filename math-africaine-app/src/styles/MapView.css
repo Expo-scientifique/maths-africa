@@ -1,0 +1,157 @@
+.map-container {
+  flex: 1;
+  background-color: #fcfaf7;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.03);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(214, 59, 27, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.map-title {
+  background-color: rgba(214, 59, 27, 0.65);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.map-display {
+  height: calc(100% - 48px);
+  position: relative;
+}
+
+/* Viewport limité pour contenir la carte zoomée */
+.map-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-zoom-container {
+  position: relative;
+  transition: transform 0.5s ease-out;
+  width: 100%;
+  height: 100%;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contrôles de zoom */
+.map-controls {
+  position: absolute;
+  bottom: 70px; /* Ajusté pour éviter de chevaucher le panneau d'info */
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+}
+
+.zoom-control {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid rgba(0,0,0,0.2);
+  margin: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.zoom-control:hover {
+  background-color: #f8f8f8;
+  transform: scale(1.1);
+}
+
+/* Style pour les points */
+.map-point {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(214, 59, 27, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+}
+
+.map-point:hover,
+.map-point.active {
+  transform: translate(-50%, -50%) scale(1.5);
+  background-color: rgba(214, 59, 27, 0.9);
+  z-index: 3;
+}
+
+/* Style pour l'infobulle */
+/* Style pour l'infobulle - version élégante et discrète */
+/* Style pour l'infobulle - version ultra-discrète et élégante */
+.map-point-tooltip {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  padding: 6px 8px;
+  width: 100px;
+  z-index: 10;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  pointer-events: none;
+  border: 1px solid rgba(214, 59, 27, 0.1);
+}
+
+.map-point:hover .map-point-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.map-point-tooltip h5 {
+  margin: 0 0 2px 0;
+  font-size: 9px;
+  color: rgba(214, 59, 27, 0.8);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.map-point-tooltip p {
+  margin: 0;
+  font-size: 8px;
+  color: rgba(104, 60, 17, 0.8);
+  line-height: 1.2;
+}
+
+/* Petite flèche pointant vers le point */
+.map-point-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-right: 1px solid rgba(214, 59, 27, 0.1);
+  border-bottom: 1px solid rgba(214, 59, 27, 0.1);
+}
