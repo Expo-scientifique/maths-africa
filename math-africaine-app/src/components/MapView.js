@@ -7,10 +7,10 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
   
   // Points sur la carte pour chaque événement
   const mapPoints = [
-    { id: 1, left: '52%', top: '45%', title: 'Os d\'Ishango (RDC)', region: { x: 52, y: 45 } },
-    { id: 2, left: '54%', top: '34%', title: 'Pyramide de Kéops (Égypte)', region: { x: 54, y: 34 } },
-    { id: 3, left: '54%', top: '36%', title: 'Papyrus de Rhind (Égypte)', region: { x: 54, y: 36 } },
-    { id: 4, left: '47%', top: '44%', title: 'Village Bali (Cameroun)', region: { x: 47, y: 44 } }
+    { id: 1, left: '53%', top: '49%', title: 'Os d\'Ishango (RDC)', region: { x: 53, y: 49 } },
+    { id: 2, left: '57%', top: '38%', title: 'Pyramide de Kéops (Égypte)', region: { x: 57, y: 38 } },
+    { id: 3, left: '57%', top: '39%', title: 'Papyrus de Rhind (Égypte)', region: { x: 57, y: 39 } },
+    { id: 4, left: '51%', top: '47%', title: 'Village Bali (Cameroun)', region: { x: 51, y: 47 } }
   ];
 
   // Fonction pour zoomer sur une région
@@ -42,7 +42,7 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
             transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
           }}>
             <img 
-              src="/assets/images/world_map.png" 
+              src="/assets/images/world_map.jpg" 
               alt="Carte du monde" 
               className="map-image"
             />
