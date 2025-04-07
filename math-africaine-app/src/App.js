@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles/App.css';
-import './styles/chrome-fix.css';
+import './styles/reset-responsive.css'; // Import du reset complet
 import Header from './components/Header';
 import Timeline from './components/Timeline';
 import MapView from './components/MapView';
@@ -8,7 +8,7 @@ import ModelViewer from './components/ModelViewer';
 import { events } from './data/events';
 
 function App() {
-  // Initialiser selectedEvent avec l'os d'Ishango (id 1) au lieu de null
+  // Initialiser selectedEvent avec l'os d'Ishango (id 1)
   const [selectedEvent, setSelectedEvent] = useState(events.find(e => e.id === 1));
 
   const handleEventSelect = (eventId) => {

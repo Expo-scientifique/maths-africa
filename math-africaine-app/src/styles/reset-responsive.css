@@ -1,0 +1,232 @@
+/* RESET COMPLET POUR FORCER LA RESPONSIVITÉ */
+
+/* === RESET GLOBAL === */
+html, body, #root, .app {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* === APP LAYOUT === */
+.app {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* === HEADER === */
+.header {
+  width: 100% !important;
+  padding: 10px !important;
+  z-index: 10 !important;
+}
+
+.header h1 {
+  font-size: 18px !important;
+  margin: 0 !important;
+}
+
+/* === TIMELINE === */
+.timeline-container {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100px !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding: 5px 0 !important;
+}
+
+.timeline {
+  min-width: 600px !important;
+  height: 100px !important;
+}
+
+/* === DISPLAY AREA === */
+.display-area {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 5px !important;
+  gap: 5px !important;
+}
+
+/* === MAP AND MODEL CONTAINER === */
+.map-container, .model-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 300px !important;
+  min-height: auto !important;
+  flex: none !important;
+  margin: 0 0 5px 0 !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+}
+
+/* === MAP SPECIFIC === */
+.map-title, .model-title {
+  padding: 5px 10px !important;
+  font-size: 16px !important;
+  height: 30px !important;
+  line-height: 20px !important;
+}
+
+.map-display {
+  height: 270px !important;
+  overflow: hidden !important;
+}
+
+.map-viewport, .map-zoom-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.map-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.map-controls {
+  position: absolute !important;
+  bottom: 10px !important;
+  right: 10px !important;
+  z-index: 100 !important;
+}
+
+.zoom-control {
+  width: 30px !important;
+  height: 30px !important;
+  margin: 3px !important;
+  font-size: 14px !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.map-point {
+  position: absolute !important;
+  transform: translate(-50%, -50%) !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+/* === MODEL CONTAINER === */
+.model-content {
+  height: 270px !important;
+  overflow: hidden !important;
+}
+
+.content-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.image-container {
+  width: 100% !important;
+  height: 60% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 5px !important;
+}
+
+.image-wrapper {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.static-image {
+  max-height: 100% !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+}
+
+.description-container {
+  width: 100% !important;
+  height: 40% !important;
+  padding: 5px 10px !important;
+  overflow-y: auto !important;
+}
+
+.ishango-description h4, .default-description h4 {
+  font-size: 16px !important;
+  margin: 5px 0 !important;
+}
+
+.ishango-description p, .default-description p {
+  font-size: 14px !important;
+  margin: 5px 0 10px !important;
+  max-height: 70px !important;
+  overflow-y: auto !important;
+}
+
+.details-button {
+  padding: 4px 8px !important;
+  font-size: 12px !important;
+}
+
+/* === TABLETTE SPÉCIFIQUE === */
+@media (min-width: 600px) {
+  .header h1 {
+    font-size: 20px !important;
+  }
+  
+  .map-container, .model-container {
+    height: 350px !important;
+  }
+  
+  .map-display, .model-content {
+    height: 320px !important;
+  }
+}
+
+/* === DESKTOP === */
+@media (min-width: 992px) {
+  .header h1 {
+    font-size: 24px !important;
+  }
+  
+  .timeline-container {
+    height: 120px !important;
+  }
+  
+  .timeline {
+    height: 120px !important;
+  }
+  
+  .display-area {
+    flex-direction: row !important;
+    padding: 10px !important;
+    gap: 10px !important;
+  }
+  
+  .map-container, .model-container {
+    width: 50% !important;
+    height: 400px !important;
+  }
+  
+  .map-display, .model-content {
+    height: 370px !important;
+  }
+  
+  .content-wrapper {
+    flex-direction: row !important;
+  }
+  
+  .image-container {
+    width: 60% !important;
+    height: 100% !important;
+  }
+  
+  .description-container {
+    width: 40% !important;
+    height: 100% !important;
+  }
+}

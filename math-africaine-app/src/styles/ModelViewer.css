@@ -1,38 +1,14 @@
-/* Remplacez ces propriétés dans ModelViewer.css */
+/* Fichier: src/styles/ModelViewer.css - Remplacez le contenu existant */
+
 .model-container {
   flex: 1;
-  min-width: 0; /* Important pour Chrome */
-  width: calc(50% - 0.5rem);
-  max-width: calc(50% - 0.5rem);
   background-color: #fcfaf7;
   border-radius: 12px;
-  /* box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.03); */
-  overflow: hidden;
-  position: relative;
   border: 1px solid #e0dada;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-}
-
-/* Ajustez également la taille de l'image pour s'adapter au conteneur */
-.image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  max-width: 100%;
-  overflow: visible;
-}
-
-.static-image {
-  max-height: 100%;
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 6px;
-  box-shadow: none;
 }
 
 .model-title {
@@ -49,10 +25,7 @@
 .model-content {
   flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  overflow: visible;
+  overflow: auto;
   background-color: #fcfaf7;
 }
 
@@ -60,7 +33,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  overflow: visible;
+  min-height: 0; /* Important pour flexbox */
 }
 
 .image-container {
@@ -69,8 +42,24 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: transparent;
-  overflow: visible;
+  min-height: 0; /* Important pour flexbox */
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.static-image {
+  max-height: 100%;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 .description-container {
@@ -80,11 +69,8 @@
   flex-direction: column;
   justify-content: center;
   background-color: #fcfaf7;
-  overflow: visible;
+  overflow: auto;
 }
-
-
-
 
 .ishango-description, .default-description {
   color: #333;
@@ -109,6 +95,7 @@
   color: #683c11;
   font-size: 14px;
   padding: 30px;
+  width: 100%;
 }
 
 .placeholder-image {
@@ -134,6 +121,7 @@
   background-color: rgba(214, 59, 27, 1);
 }
 
+/* Popup de détails */
 .details-popup {
   position: fixed;
   top: 0;
@@ -146,6 +134,7 @@
   align-items: center;
   z-index: 1000;
   animation: fadeIn 0.3s ease;
+  padding: 15px;
 }
 
 @keyframes fadeIn {
@@ -158,8 +147,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   padding: 30px;
-  max-width: 800px;
   width: 90%;
+  max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
@@ -172,9 +161,9 @@
 }
 
 .close-popup {
-  position: fixed;
-  top: 20px;
-  right: 30px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -188,10 +177,6 @@
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
-}
-
-.close-popup:hover {
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .popup-content h3 {
@@ -263,28 +248,117 @@
   line-height: 1.5;
 }
 
-/* Responsivité minimale */
-@media (max-width: 768px) {
-  .model-container {
-    min-height: 300px;
-    flex: 0 0 auto;
+/* Responsive - Tablettes */
+@media (max-width: 992px) {
+  .popup-content {
+    padding: 25px;
   }
   
+  .popup-image {
+    max-height: 350px;
+  }
+  
+  .extra-info h4 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Responsive - Mobile Landscape */
+@media (max-width: 768px) {
   .content-wrapper {
     flex-direction: column;
   }
   
   .image-container {
-    flex: none;
-    padding: 10px 10px 0;
+    flex: 1;
+    padding: 10px 10px 5px;
+    min-height: 0;
+    height: 60%;
+  }
+  
+  .static-image {
+    max-height: 100%;
   }
   
   .description-container {
-    flex: none;
-    padding: 0 15px 15px;
+    flex: 1;
+    padding: 5px 15px 15px;
+    height: 40%;
+  }
+  
+  .ishango-description h4, .default-description h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .ishango-description p, .default-description p {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    max-height: 60px;
+    overflow-y: auto;
+  }
+  
+  .mobile-popup {
+    padding: 20px;
+  }
+  
+  .popup-content h3 {
+    font-size: 1.3rem;
+  }
+  
+  .popup-date {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
   }
   
   .popup-image {
-    max-height: 300px;
+    max-height: 250px;
+  }
+  
+  .popup-details p {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive - Petit mobile */
+@media (max-width: 480px) {
+  .popup-content {
+    padding: 20px 15px;
+  }
+  
+  .close-popup {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .popup-image-container {
+    padding: 10px;
+  }
+  
+  .popup-image {
+    max-height: 200px;
+  }
+  
+  .extra-info h4 {
+    font-size: 1rem;
+  }
+  
+  .extra-info h5 {
+    font-size: 0.95rem;
+  }
+  
+  .extra-info ul {
+    margin-left: 15px;
+  }
+  
+  .extra-info li {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+  
+  .ishango-description p, .default-description p {
+    max-height: 45px;
   }
 }
