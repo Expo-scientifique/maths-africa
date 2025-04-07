@@ -31,9 +31,9 @@ export const events = [
   },
   { 
     id: 4, 
-    title: "Village Bali", 
+    title: "Village Ba-ila", 
     date: "1400 CE", 
-    location: "Cameroun", 
+    location: "Zambie", 
     coordinates: [10.5, 5.5], 
     description: "Architecture traditionnelle du peuple Bali au Cameroun, utilisant des concepts géométriques sophistiqués et des motifs fractals dans la construction et la décoration.",
     modelPath: "/assets/models/bali_village.obj",

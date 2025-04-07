@@ -32,10 +32,10 @@ const ModelViewer = ({ selectedEvent }) => {
   const getImagePath = (eventId) => {
     switch (eventId) {
       case 1: return '/assets/images/ishango_bone.png';
-      case 2: return '/assets/images/pyramid.jpg';
+      case 2: return '/assets/images/pyramid.png';
       case 3: return '/assets/images/papyrus.png';
-      case 4: return '/assets/images/bali_village.jpg';
-      case 5: return '/assets/images/timbuktu_manuscript.jpg';
+      case 4: return '/assets/images/bali_village.png';
+      case 5: return '/assets/images/timbuktu_manuscript.png';
       default: return '/assets/images/placeholders/model_placeholder.jpg';
     }
   };
