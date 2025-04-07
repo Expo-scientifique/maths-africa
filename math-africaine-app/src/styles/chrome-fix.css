@@ -1,0 +1,53 @@
+/* 
+  Créez un fichier chrome-fix.css dans src/styles/ 
+  et importez-le dans App.js
+*/
+
+/* Correctifs spécifiques pour Chrome */
+@supports (-webkit-appearance:none) {
+  /* Ciblage spécifique des navigateurs basés sur WebKit (Chrome, Safari) */
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* Correction pour la timeline sur Chrome */
+  .timeline-container {
+    width: 100% !important;
+    overflow-x: hidden !important; /* Forcer l'absence de défilement */
+  }
+  
+  .timeline {
+    width: calc(100% - 40px) !important; /* Spécifique à Chrome */
+    margin: 0 20px !important;
+    padding: 0 !important;
+  }
+  
+  /* Correction pour les éléments flexbox qui peuvent se comporter différemment dans Chrome */
+  .display-area {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.5rem !important;
+  }
+  
+  .map-container, .model-container {
+    min-width: 0 !important; /* Crucial pour Chrome */
+    max-width: calc(50% - 0.5rem) !important;
+  }
+  
+  /* Forcer la réinitialisation des marges qui pourraient causer le défilement */
+  * {
+    margin-right: 0 !important;
+  }
+  
+  /* S'assurer que la map reste dans son conteneur */
+  .map-image {
+    max-width: 100% !important;
+  }
+  
+  /* Contrôles de zoom */
+  .map-controls {
+    right: 10px !important;
+  }
+}

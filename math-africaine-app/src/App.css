@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
-}
+/* Ajoutez ce code dans App.css pour ajuster les cartes */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.display-area {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex: 1;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.map-container, .model-container {
+  flex: 1;
+  max-width: calc(50% - 0.5rem); /* Assure que les deux cartes ensemble ne dépassent pas la largeur disponible */
+  box-sizing: border-box;
+  min-height: 400px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media (max-width: 768px) {
+  .display-area {
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .map-container, .model-container {
+    max-width: 100%;
+    flex: 0 0 auto;
+    height: 45vh;
+    min-height: 300px;
   }
 }

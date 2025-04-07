@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/ModelViewer.css';
 
 const ModelViewer = ({ selectedEvent }) => {
   const [showDetails, setShowDetails] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Détection des appareils mobiles
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Vérification initiale
+    checkIfMobile();
+    
+    // Surveiller les changements de taille d'écran
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Nettoyage
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
   // Fonction pour afficher/masquer le popup
   const toggleDetails = () => {
@@ -21,14 +40,17 @@ const ModelViewer = ({ selectedEvent }) => {
     }
   };
 
-  // Contenu explicatif pour l'os d'Ishango (version moderne)
+  // Contenu explicatif adaptatif pour l'os d'Ishango
   const getIshangoContent = () => {
     return (
       <div className="ishango-description">
         <h4>Os d'Ishango</h4>
-        <p>Os gravé (20 000 ans) découvert au Congo en 1950. Premier témoignage de calcul mathématique en Afrique.</p>
+        <p>{isMobile 
+          ? "Os gravé (20 000 ans) du Congo. Premier témoignage mathématique africain." 
+          : "Os gravé (20 000 ans) découvert au Congo en 1950. Premier témoignage de calcul mathématique en Afrique."
+        }</p>
         <button className="details-button" onClick={toggleDetails}>
-          Plus d'infos
+          {isMobile ? "Détails" : "Plus d'infos"}
         </button>
       </div>
     );
@@ -38,7 +60,7 @@ const ModelViewer = ({ selectedEvent }) => {
     <div className="model-container">
       <h3 className="model-title">Vue de l'Objet</h3>
       
-      {/* Zone d'affichage principale avec image et description côte à côte */}
+      {/* Zone d'affichage principale adaptative */}
       <div className="model-content">
         {!selectedEvent ? (
           <div className="placeholder">
@@ -47,11 +69,11 @@ const ModelViewer = ({ selectedEvent }) => {
               alt="Placeholder" 
               className="placeholder-image"
             />
-            <p>Sélectionnez un événement pour afficher l'objet</p>
+            <p>Sélectionnez un événement</p>
           </div>
         ) : (
           <div className="content-wrapper">
-            {/* Image à gauche */}
+            {/* Image à gauche (ou en haut sur mobile) */}
             <div className="image-container">
               <div className="image-wrapper">
                 <img 
@@ -62,16 +84,19 @@ const ModelViewer = ({ selectedEvent }) => {
               </div>
             </div>
             
-            {/* Description à droite uniquement pour l'os d'Ishango */}
+            {/* Description à droite (ou en bas sur mobile) */}
             <div className="description-container">
               {selectedEvent.id === 1 ? (
                 getIshangoContent()
               ) : (
                 <div className="default-description">
                   <h4>{selectedEvent.title}</h4>
-                  <p>{selectedEvent.description}</p>
+                  <p>{isMobile 
+                    ? selectedEvent.description.split('.')[0] + '.' // Première phrase seulement
+                    : selectedEvent.description
+                  }</p>
                   <button className="details-button" onClick={toggleDetails}>
-                    Plus d'infos
+                    {isMobile ? "Détails" : "Plus d'infos"}
                   </button>
                 </div>
               )}
@@ -80,11 +105,11 @@ const ModelViewer = ({ selectedEvent }) => {
         )}
       </div>
       
-      {/* Popup de détails */}
+      {/* Popup de détails adaptatif */}
       {showDetails && selectedEvent && (
         <div className="details-popup">
           <button className="close-popup" onClick={toggleDetails}>×</button>
-          <div className="popup-content">
+          <div className={`popup-content ${isMobile ? 'mobile-popup' : ''}`}>
             <h3>{selectedEvent.title}</h3>
             <p className="popup-date">{selectedEvent.date}</p>
             
@@ -101,7 +126,7 @@ const ModelViewer = ({ selectedEvent }) => {
               <p><strong>Lieu:</strong> {selectedEvent.location}</p>
               <p>{selectedEvent.description}</p>
               
-              {/* Informations spécifiques à l'os d'Ishango */}
+              {/* Contenu spécifique à chaque événement - conservé mais adapté si nécessaire */}
               {selectedEvent.id === 1 && (
                 <div className="extra-info">
                   <h4>Détails supplémentaires sur l'os d'Ishango</h4>
@@ -121,7 +146,7 @@ const ModelViewer = ({ selectedEvent }) => {
                 </div>
               )}
               
-              {/* Informations pour les autres événements */}
+              {/* Autres événements - conservés tels quels */}
               {selectedEvent.id === 2 && (
                 <div className="extra-info">
                   <h4>Détails supplémentaires</h4>
@@ -149,7 +174,7 @@ const ModelViewer = ({ selectedEvent }) => {
                 </div>
               )}
 
-              {/* Nouvelles informations pour les Manuscrits de Tombouctou */}
+              {/* Manuscrits de Tombouctou */}
               {selectedEvent.id === 5 && (
                 <div className="extra-info">
                   <h4>Détails supplémentaires</h4>
@@ -163,7 +188,6 @@ const ModelViewer = ({ selectedEvent }) => {
                     <li>Des méthodes de résolution d'équations et de calculs géométriques</li>
                     <li>Des applications pratiques des mathématiques au commerce et à l'architecture</li>
                   </ul>
-                  <p>Ces manuscrits démontrent l'existence d'une tradition mathématique sophistiquée en Afrique de l'Ouest, centrée autour de Tombouctou qui était un important centre d'apprentissage et d'érudition.</p>
                 </div>
               )}
             </div>

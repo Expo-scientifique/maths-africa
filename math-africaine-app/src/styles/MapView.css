@@ -1,12 +1,22 @@
+/* Remplacez ces propriétés dans MapView.css */
+
 .map-container {
   flex: 1;
+  min-width: 0; /* Important pour Chrome */
+  width: calc(50% - 0.5rem);
+  max-width: calc(50% - 0.5rem);
   background-color: #fcfaf7;
   border-radius: 12px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.03);
   overflow: hidden;
   position: relative;
   border: 1px solid rgba(214, 59, 27, 0.3);
-  transition: box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.map-display {
+  height: calc(100% - 48px); /* Garde 48px pour le titre */
+  position: relative;
 }
 
 .map-title {
@@ -19,12 +29,7 @@
   letter-spacing: 0.02em;
 }
 
-.map-display {
-  height: calc(100% - 48px);
-  position: relative;
-}
 
-/* Viewport limité pour contenir la carte zoomée */
 .map-viewport {
   width: 100%;
   height: 100%;
@@ -46,10 +51,9 @@
   display: block;
 }
 
-/* Contrôles de zoom */
 .map-controls {
   position: absolute;
-  bottom: 70px; /* Ajusté pour éviter de chevaucher le panneau d'info */
+  bottom: 70px;
   right: 20px;
   display: flex;
   flex-direction: column;
@@ -77,7 +81,6 @@
   transform: scale(1.1);
 }
 
-/* Style pour les points */
 .map-point {
   position: absolute;
   width: 12px;
@@ -99,9 +102,6 @@
   z-index: 3;
 }
 
-/* Style pour l'infobulle */
-/* Style pour l'infobulle - version élégante et discrète */
-/* Style pour l'infobulle - version ultra-discrète et élégante */
 .map-point-tooltip {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.75);
@@ -142,7 +142,6 @@
   line-height: 1.2;
 }
 
-/* Petite flèche pointant vers le point */
 .map-point-tooltip::after {
   content: '';
   position: absolute;
@@ -154,4 +153,12 @@
   background-color: rgba(255, 255, 255, 0.75);
   border-right: 1px solid rgba(214, 59, 27, 0.1);
   border-bottom: 1px solid rgba(214, 59, 27, 0.1);
+}
+
+/* Ajout minimal de responsivité sans changer l'apparence */
+@media (max-width: 768px) {
+  .map-container {
+    min-height: 300px;
+    flex: 0 0 auto;
+  }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/Timeline.css';
 
 const Timeline = ({ events, onSelectEvent, selectedEvent }) => {
-  // Distribution des points sur la timeline (de 5% à 95%)
+  // Distribution des points sur la timeline (de 5% à 95%) avec largeur adaptative
   const getPosition = (index, total) => {
     // Assurer une répartition uniforme avec une marge aux extrémités
     const margin = 5; // 5% de marge de chaque côté

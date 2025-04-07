@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './styles/App.css';
+import './styles/chrome-fix.css';
 import Header from './components/Header';
 import Timeline from './components/Timeline';
 import MapView from './components/MapView';

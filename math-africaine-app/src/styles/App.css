@@ -1,21 +1,28 @@
-.app {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
+/* Ajoutez ce code à la fin de App.css */
+
+.display-area {
+  display: flex;
+  flex: 1;
+  padding: 1rem;
+  gap: 1rem;
+  overflow: hidden;
+}
+
+.map-container, .model-container {
+  flex: 1;
+  min-height: 400px; /* Hauteur minimale fixe */
+  max-height: calc(100vh - 200px); /* Hauteur maximale adaptative */
+}
+
+/* Responsive sans changer l'apparence visuelle */
+@media (max-width: 768px) {
   .display-area {
-    display: flex;
-    flex: 1;
-    padding: 1rem;
-    gap: 1rem;
-    overflow: hidden;
+    flex-direction: column;
   }
   
-  @media (max-width: 768px) {
-    .display-area {
-      flex-direction: column;
-    }
+  .map-container, .model-container {
+    flex: 0 0 auto;
+    height: 45vh; /* Hauteur relative sur mobile */
+    min-height: 300px; /* Hauteur minimale sur mobile */
   }
+}

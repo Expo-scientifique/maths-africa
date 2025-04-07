@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/MapView.css';
 
 const MapView = ({ selectedEvent, onSelectEvent }) => {
@@ -32,6 +32,16 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
     onSelectEvent(pointId);
     zoomToRegion(point);
   };
+
+  // Effet pour ajuster le zoom quand un nouvel événement est sélectionné
+  useEffect(() => {
+    if (selectedEvent) {
+      const point = mapPoints.find(p => p.id === selectedEvent.id);
+      if (point) {
+        zoomToRegion(point);
+      }
+    }
+  }, [selectedEvent?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="map-container">
