@@ -2,6 +2,20 @@ import React from 'react';
 import '../styles/Timeline.css';
 
 const Timeline = ({ events, onSelectEvent, selectedEvent }) => {
+  // Distribution des points sur la timeline (de 5% à 95%)
+  const getPosition = (index, total) => {
+    // Assurer une répartition uniforme avec une marge aux extrémités
+    const margin = 5; // 5% de marge de chaque côté
+    const availableSpace = 100 - (2 * margin);
+    
+    // Si un seul événement, le centrer
+    if (total === 1) return 50;
+    
+    // Calcul de la position en pourcentage
+    const position = margin + (index / (total - 1)) * availableSpace;
+    return position;
+  };
+
   return (
     <div className="timeline-container">
       <div className="timeline">
@@ -11,7 +25,9 @@ const Timeline = ({ events, onSelectEvent, selectedEvent }) => {
           <div 
             key={event.id} 
             className="timeline-step"
-            style={{left: `${(index / (events.length - 1)) * 100}%`}}
+            style={{
+              left: `${getPosition(index, events.length)}%`
+            }}
           >
             <div className="timeline-text">
               <div className="timeline-title">{event.title}</div>

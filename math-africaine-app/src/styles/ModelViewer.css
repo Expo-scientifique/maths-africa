@@ -33,7 +33,7 @@
   justify-content: center;
   align-items: center;
   padding: 0;
-  overflow: auto;
+  overflow: visible; /* Permettre à l'image d'être visible entièrement */
   background-color: #fcfaf7;
 }
 
@@ -42,16 +42,18 @@
   display: flex;
   width: 100%;
   height: 100%;
+  overflow: visible; /* Permettre à l'image d'être visible entièrement */
 }
 
-/* Container pour l'image (côté gauche) */
+/* Conteneur pour l'image (côté gauche) */
 .image-container {
   flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background-color: #fcfaf7;
+  padding: 10px;
+  background-color: transparent;
+  overflow: visible; /* Permettre à l'image d'être visible entièrement */
 }
 
 /* Container pour la description (côté droit) */
@@ -62,20 +64,26 @@
   flex-direction: column;
   justify-content: center;
   background-color: #fcfaf7;
+  overflow: visible; /* Permettre à l'image d'être visible entièrement */
+}
+
+/* Wrapper de l'image - dimensionnement contrôlé */
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 280px; /* Hauteur encore augmentée à 280px */
+  max-width: 100%;
+  overflow: visible; /* Permettre à l'image d'être visible entièrement */
 }
 
 /* Style pour l'image statique */
 .static-image {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
+  height: 280px; /* Hauteur encore augmentée à 280px */
+  width: auto; /* Largeur automatique pour préserver les proportions */
+  object-fit: contain; /* Préserver les proportions */
   border-radius: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.static-image:hover {
-  transform: scale(1.02);
+  box-shadow: none;
 }
 
 /* Description de l'os d'Ishango */
@@ -205,16 +213,18 @@
 }
 
 .popup-image-container {
-  background-color: #f8f8f8;
+  background-color: transparent;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 25px;
   text-align: center;
+  width: 100%;
 }
 
 .popup-image {
+  max-height: 450px; /* Hauteur encore augmentée à 450px */
   max-width: 100%;
-  max-height: 400px;
+  width: auto;
   object-fit: contain;
   border-radius: 6px;
 }
@@ -273,54 +283,4 @@
     border-left: none;
     border-top: 1px solid rgba(214, 59, 27, 0.2);
   }
-}
-/* Ajoutez ces styles à votre fichier ModelViewer.css existant */
-
-/* Conteneur pour standardiser l'image principale */
-.image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: 220px; /* Hauteur réduite pour éviter le dépassement */
-  max-width: 100%;
-}
-
-/* Style pour l'image sans effets */
-.static-image {
-  object-fit: contain; /* Préserve les proportions de l'image */
-  max-height: 220px; /* Hauteur réduite */
-  max-width: 100%;
-}
-
-/* Conteneur pour l'image dans le popup */
-.popup-image-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-height: 300px; /* Hauteur réduite pour le popup */
-  max-width: 100%;
-}
-
-/* Image dans le popup */
-.popup-image {
-  max-width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-}
-
-/* Image container adjustments */
-.image-container {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px; /* Réduction du padding */
-  background-color: #fcfaf7;
-}
-
-.popup-image-container {
-  background-color: #f8f8f8;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 25px;
 }

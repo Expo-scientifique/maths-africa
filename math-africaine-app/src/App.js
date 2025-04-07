@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles/App.css';
 import Header from './components/Header';
 import Timeline from './components/Timeline';
@@ -7,7 +7,8 @@ import ModelViewer from './components/ModelViewer';
 import { events } from './data/events';
 
 function App() {
-  const [selectedEvent, setSelectedEvent] = useState(null);
+  // Initialiser selectedEvent avec l'os d'Ishango (id 1) au lieu de null
+  const [selectedEvent, setSelectedEvent] = useState(events.find(e => e.id === 1));
 
   const handleEventSelect = (eventId) => {
     const event = events.find(e => e.id === eventId);

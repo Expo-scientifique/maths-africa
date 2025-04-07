@@ -16,6 +16,7 @@ const ModelViewer = ({ selectedEvent }) => {
       case 2: return '/assets/images/pyramid.jpg';
       case 3: return '/assets/images/papyrus.png';
       case 4: return '/assets/images/bali_village.jpg';
+      case 5: return '/assets/images/timbuktu_manuscript.jpg';
       default: return '/assets/images/placeholders/model_placeholder.jpg';
     }
   };
@@ -145,6 +146,24 @@ const ModelViewer = ({ selectedEvent }) => {
                   <p><strong>Culture:</strong> Bamiléké</p>
                   <p><strong>Importance:</strong> Architecture incorporant des motifs fractals</p>
                   <p>L'architecture du village Bali au Cameroun présente des motifs fractals récursifs dans ses structures, démontrant une compréhension intuitive de concepts mathématiques complexes bien avant leur formalisation par la mathématique occidentale.</p>
+                </div>
+              )}
+
+              {/* Nouvelles informations pour les Manuscrits de Tombouctou */}
+              {selectedEvent.id === 5 && (
+                <div className="extra-info">
+                  <h4>Détails supplémentaires</h4>
+                  <p><strong>Période:</strong> 14ème-16ème siècles</p>
+                  <p><strong>Conservation:</strong> Bibliothèques privées et Institut Ahmed Baba à Tombouctou</p>
+                  <p><strong>Importance:</strong> Avancées mathématiques et astronomiques</p>
+                  <p>Les manuscrits de Tombouctou constituent une vaste collection de textes scientifiques qui témoignent de l'excellence académique de l'Afrique de l'Ouest médiévale. Ces documents contiennent:</p>
+                  <ul>
+                    <li>Des traités d'astronomie avec des calculs précis des positions célestes</li>
+                    <li>Des textes mathématiques explorant des concepts algébriques avancés</li>
+                    <li>Des méthodes de résolution d'équations et de calculs géométriques</li>
+                    <li>Des applications pratiques des mathématiques au commerce et à l'architecture</li>
+                  </ul>
+                  <p>Ces manuscrits démontrent l'existence d'une tradition mathématique sophistiquée en Afrique de l'Ouest, centrée autour de Tombouctou qui était un important centre d'apprentissage et d'érudition.</p>
                 </div>
               )}
             </div>

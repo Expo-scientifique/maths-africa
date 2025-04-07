@@ -38,5 +38,15 @@ export const events = [
     description: "Architecture traditionnelle du peuple Bali au Cameroun, utilisant des concepts géométriques sophistiqués et des motifs fractals dans la construction et la décoration.",
     modelPath: "/assets/models/bali_village.obj",
     mapImage: "/assets/images/maps/cameroon_map.jpg"
+  },
+  { 
+    id: 5, 
+    title: "Manuscrits de Tombouctou", 
+    date: "1400-1600 CE", 
+    location: "Mali", 
+    coordinates: [-3.0, 16.8], 
+    description: "Collection de manuscrits du Mali contenant des traités mathématiques avancés sur l'algèbre, la géométrie et l'astronomie, témoignant de la riche tradition intellectuelle de l'Afrique de l'Ouest.",
+    modelPath: "/assets/models/timbuktu_manuscript.obj",
+    mapImage: "/assets/images/maps/mali_map.jpg"
   }
 ];
