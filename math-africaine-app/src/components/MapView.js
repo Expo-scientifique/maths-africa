@@ -14,10 +14,10 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
     { id: 5, left: '46%', top: '55%', title: 'Manuscrits de Tombouctou (Mali)', region: { x: 46, y: 55 } }
   ];
 
-  // Fonction pour zoomer sur une région
+  // Fonction pour zoomer sur une région - niveau de zoom réduit pour voir les infobulles
   const zoomToRegion = (point) => {
     setZoomPosition({ x: point.region.x, y: point.region.y });
-    setZoomLevel(2.5); // Niveau de zoom
+    setZoomLevel(1.8); // Niveau de zoom réduit par rapport à l'original (2.5)
   };
   
   // Fonction pour revenir à la vue globale

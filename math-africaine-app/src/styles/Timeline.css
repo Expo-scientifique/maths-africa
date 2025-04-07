@@ -14,14 +14,14 @@
   align-items: center;
 }
 
-/* Ligne horizontale centrale fixe */
+/* Ligne horizontale centrale - couleur modifiée pour #d48d5b */
 .timeline-continuous-line {
   position: absolute;
   top: 50%;
   left: 0;
   right: 0;
   height: 2px;
-  background-color: #000;
+  background-color: #d48d5b;
   transform: translateY(-50%);
   z-index: 1;
 }
@@ -61,6 +61,7 @@
   color: #666;
 }
 
+/* Point de la timeline - simplement s'assurer que le z-index est supérieur à celui de la ligne */
 .timeline-marker {
   position: absolute;
   top: 50%;
@@ -69,10 +70,10 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: #F99746;
-  border: 2px solid #F99746;
+  background-color: #d48d5b;
+  border: 2px solid #d63b1b;
   cursor: pointer;
-  z-index: 2;
+  z-index: 2; /* Supérieur au z-index de la ligne (1) */
   transition: all 0.3s ease;
 }
 
@@ -81,9 +82,9 @@
 }
 
 .timeline-marker.active {
-  background-color: #F99746;
+  background-color: #d48d5b;
   transform: translate(-50%, -50%) scale(1.2);
-  box-shadow: 0 0 8px rgba(249, 151, 70, 0.5);
+  box-shadow: 0 0 8px rgba(214, 59, 27, 0.5);
 }
 
 .timeline-location {
