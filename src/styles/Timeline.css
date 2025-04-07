@@ -1,0 +1,160 @@
+/* Fichier: src/styles/Timeline.css - Remplacez le contenu existant */
+
+.timeline-container {
+  padding: 10px 0;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 150px !important;
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Pour une meilleure expérience tactile */
+}
+
+.timeline {
+  position: relative;
+  height: 100% !important;
+  margin: 0 40px;
+  display: flex;
+  align-items: center;
+  min-width: 700px; /* Assure une largeur minimale pour le scroll horizontal */
+}
+
+/* Ligne horizontale centrale */
+.timeline-continuous-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #d48d5b;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.timeline-step {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  height: 100%;
+}
+
+.timeline-text {
+  position: absolute;
+  top: 10px;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.timeline-title {
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 2px;
+  color: #333;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  line-height: 1.2;
+}
+
+.timeline-date {
+  font-size: 10px;
+  color: #666;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d48d5b;
+  border: 2px solid #d63b1b;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.timeline-marker:hover {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.timeline-marker.active {
+  background-color: #d48d5b;
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 0 8px rgba(214, 59, 27, 0.5);
+}
+
+.timeline-location {
+  position: absolute;
+  bottom: 10px;
+  margin: 0;
+  font-size: 10px;
+  color: #333;
+  text-align: center;
+  width: 100%;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Indicateurs de défilement sur mobile */
+@media (max-width: 768px) {
+  .timeline-container {
+    height: 130px;
+  }
+  
+  .timeline-container::before,
+  .timeline-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  .timeline-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0.9), transparent);
+  }
+  
+  .timeline-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
+  }
+  
+  .timeline-title {
+    font-size: 11px;
+  }
+  
+  .timeline-location {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline-container {
+    height: 110px;
+  }
+  
+  .timeline-marker {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .timeline-text {
+    top: 5px;
+  }
+  
+  .timeline-location {
+    bottom: 5px;
+  }
+}
