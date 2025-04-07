@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/MapView.css';
 
 const MapView = ({ selectedEvent, onSelectEvent }) => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const [zoomPosition, setZoomPosition] = useState({ x: 50, y: 50 });
+  const mapContainerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Points sur la carte pour chaque événement avec les coordonnées mises à jour
+  // Points sur la carte pour chaque événement
   const mapPoints = [
     { id: 1, left: '53%', top: '65%', title: 'Os d\'Ishango (RDC)', region: { x: 53, y: 65 } },
     { id: 2, left: '54%', top: '50%', title: 'Pyramide de Kéops (Égypte)', region: { x: 54, y: 50 } },
@@ -13,11 +15,26 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
     { id: 4, left: '50%', top: '61%', title: 'Village Bali (Cameroun)', region: { x: 50, y: 61 } },
     { id: 5, left: '46%', top: '55%', title: 'Manuscrits de Tombouctou (Mali)', region: { x: 46, y: 55 } }
   ];
+  
+  // Détection du mode mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
-  // Fonction pour zoomer sur une région - niveau de zoom réduit pour voir les infobulles
+  // Fonction pour zoomer sur une région avec niveau adapté à la taille d'écran
   const zoomToRegion = (point) => {
     setZoomPosition({ x: point.region.x, y: point.region.y });
-    setZoomLevel(1.8); // Niveau de zoom réduit par rapport à l'original (2.5)
+    // Zoom plus modéré sur mobile
+    setZoomLevel(isMobile ? 1.5 : 1.8);
   };
   
   // Fonction pour revenir à la vue globale
@@ -41,10 +58,10 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
         zoomToRegion(point);
       }
     }
-  }, [selectedEvent?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [selectedEvent?.id, isMobile]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="map-container">
+    <div className="map-container" ref={mapContainerRef}>
       <h3 className="map-title">Localisation</h3>
       <div className="map-display">
         <div className="map-viewport">
@@ -58,7 +75,6 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
               className="map-image"
             />
             
-            {/* Points sur la carte avec infobulles conservées */}
             {mapPoints.map(point => (
               <div 
                 key={point.id}
@@ -66,7 +82,6 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
                 style={{ left: point.left, top: point.top }}
                 onClick={() => handlePointClick(point.id)}
               >
-                {/* Info-bulle au survol - conservée */}
                 <div className="map-point-tooltip">
                   <h5>{point.title}</h5>
                   <p>Cliquez pour voir le modèle 3D</p>
@@ -78,9 +93,21 @@ const MapView = ({ selectedEvent, onSelectEvent }) => {
         
         {/* Contrôles de zoom */}
         <div className="map-controls">
-          <button className="zoom-control zoom-in" onClick={() => setZoomLevel(prev => Math.min(prev + 0.5, 4))}>+</button>
-          <button className="zoom-control zoom-out" onClick={() => setZoomLevel(prev => Math.max(prev - 0.5, 1))}>−</button>
-          <button className="zoom-control reset-zoom" onClick={resetZoom}>↺</button>
+          <button 
+            className="zoom-control zoom-in" 
+            onClick={() => setZoomLevel(prev => Math.min(prev + 0.5, 4))}
+            aria-label="Zoom in"
+          >+</button>
+          <button 
+            className="zoom-control zoom-out" 
+            onClick={() => setZoomLevel(prev => Math.max(prev - 0.5, 1))}
+            aria-label="Zoom out"
+          >−</button>
+          <button 
+            className="zoom-control reset-zoom" 
+            onClick={resetZoom}
+            aria-label="Reset zoom"
+          >↺</button>
         </div>
       </div>
     </div>
