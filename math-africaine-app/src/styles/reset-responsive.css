@@ -163,7 +163,6 @@ html, body, #root, .app {
 .ishango-description p, .default-description p {
   font-size: 14px !important;
   margin: 5px 0 10px !important;
-  max-height: 70px !important;
   overflow-y: auto !important;
 }
 
